@@ -1,510 +1,494 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.2">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單車逗點 Q Cycling - 讓二手單車重生的文藝空間</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            background: #f5f1e8;
+            color: #3a3a3a;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #fff;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.2rem;
+        }
+
+        nav {
+            background: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e74c3c;
+        }
+
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7)),
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z" fill="%23e8dcc4"/></svg>');
+            background-size: cover;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .filter-section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .filter-group select:focus, .filter-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .filter-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .btn-filter {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-filter:hover {
+            background: #2980b9;
+        }
+
+        .bikes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bike-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .bike-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .bike-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .bike-image::after {
+            content: '照片待上傳';
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .bike-info {
+            padding: 1.5rem;
+        }
+
+        .bike-brand {
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bike-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .bike-type {
+            display: inline-block;
+            background: #ecf0f1;
+            color: #555;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .bike-desc {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .bike-price {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .bike-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-reserved {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .bikes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="zh-TW"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;單車逗點 Q Cycling - 讓二手單車重生的文藝空間&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f5f1e8;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #3a3a3a;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.8;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 3rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px rgba(0,0,0,0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 0.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tagline {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.9;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 0.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 4px rgba(0,0,0,0.05);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: sticky;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 100;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav ul {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #2c3e50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #e74c3c;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 4rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7)),</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"&gt;&lt;path d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z" fill="%23e8dcc4"/&gt;&lt;/svg&gt;');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-size: cover;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero h2 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #2c3e50;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #555;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 2;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 12px rgba(0,0,0,0.08);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #2c3e50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-group {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-group label {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #555;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-group select, .filter-group input {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #e0e0e0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: border-color 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: inherit;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-group select:focus, .filter-group input:focus {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #3498db;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.filter-controls {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-filter {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #3498db;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: background 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-filter:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #2980b9;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bikes-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 12px rgba(0,0,0,0.08);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s, box-shadow 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-8px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 8px 24px rgba(0,0,0,0.15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-image {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 240px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-image::after {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '照片待上傳';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.8;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-info {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-brand {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #999;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 0.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-name {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #2c3e50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-type {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #ecf0f1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #555;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.3rem 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-desc {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #666;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-price {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #e74c3c;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bike-status {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.3rem 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-left: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.status-available {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #d4edda;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #155724;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.status-reserved {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #fff3cd;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #856404;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #2c3e50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 3rem 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer-content p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.9;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.contact-info {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.logo {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>font-size: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.bikes-grid {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.filter-controls {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="logo"&gt;單車逗點 Q Cycling&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tagline"&gt;讓每一台單車，都有重生的逗點&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#home"&gt;首頁&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#bikes"&gt;單車選購&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#about"&gt;關於我們&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#consign"&gt;寄賣服務&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#contact"&gt;聯絡方式&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;二手單車的文藝復興&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;每一台單車都有屬於它的故事，在時光的流轉中，它們曾陪伴過不同的人走過不同的風景。&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>我們相信，這些單車值得被賦予新的生命，繼續踩踏在下一段旅程中。&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>在這裡，你不只是購買一台二手單車，更是延續一段美好的騎行記憶。&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="filter-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="filter-title"&gt;🔍 尋找您的理想單車&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="filter-controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="filter-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="bike-type"&gt;車款類型&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select id="bike-type"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value=""&gt;全部類型&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="road"&gt;公路車&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="mountain"&gt;登山車&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="city"&gt;城市車&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="folding"&gt;摺疊車&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="hybrid"&gt;混合車&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="filter-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="brand"&gt;品牌&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select id="brand"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value=""&gt;全部品牌&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="giant"&gt;Giant 捷安特&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="merida"&gt;Merida 美利達&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="trek"&gt;Trek&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="specialized"&gt;Specialized&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="others"&gt;其他品牌&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="filter-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="price-min"&gt;價格範圍（最低）&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="number" id="price-min" placeholder="NT$ 0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="filter-group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="price-max"&gt;價格範圍（最高）&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="number" id="price-max" placeholder="NT$ 50000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn-filter" onclick="filterBikes()"&gt;開始尋找&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bikes-grid" id="bikes-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- 範例單車卡片 --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="road" data-brand="giant" data-price="15000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Giant 捷安特&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;TCR Advanced 2&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;公路車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;輕量化碳纖維車架，適合長途騎乘與競賽。車況良好，定期保養。這台車曾陪伴車主完成環島夢想，現在期待下一位騎士。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 15,000 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="mountain" data-brand="merida" data-price="12000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Merida 美利達&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;Big Seven 500&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;登山車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;27.5吋輪徑，前避震系統，適合越野與山林探險。車主細心呵護，僅騎乘過數次，狀態接近新車。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 12,000 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="city" data-brand="giant" data-price="6000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Giant 捷安特&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;Escape 3&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;城市車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;舒適的通勤好夥伴，輕鬆的騎乘姿勢適合日常代步。配有置物架，實用性極高。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 6,000 &lt;span class="bike-status status-reserved"&gt;已預約&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="folding" data-brand="others" data-price="8500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Dahon&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;K3 Plus&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;摺疊車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;輕巧便攜，三秒快速摺疊。適合通勤族，可輕鬆帶上捷運公車。含原廠攜車袋。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 8,500 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="road" data-brand="trek" data-price="22000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Trek&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;Domane AL 3&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;公路車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;耐力型公路車，舒適幾何設計，適合長距離騎乘。Shimano Sora套件，穩定可靠。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 22,000 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="hybrid" data-brand="specialized" data-price="18000"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Specialized&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;Sirrus X 3.0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;混合車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;結合公路車的速度與登山車的穩定性，適合多種路況。前避震，disc煞車系統。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 18,000 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="city" data-brand="merida" data-price="5500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Merida 美利達&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;Crossway 100&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;城市車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;經典通勤車款，簡約設計。車況優良，鏈條變速系統順暢，適合預算有限的騎士。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 5,500 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bike-card" data-type="mountain" data-brand="giant" data-price="9500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-image"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bike-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-brand"&gt;Giant 捷安特&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-name"&gt;ATX 810&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="bike-type"&gt;登山車&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-desc"&gt;入門級登山車，適合休閒騎乘與輕度越野。車主愛護有加，定期維護保養。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bike-price"&gt;NT$ 9,500 &lt;span class="bike-status status-available"&gt;可購買&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="footer-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3&gt;單車逗點 Q Cycling&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;我們相信每一台單車都值得被珍惜，每一段騎行記憶都值得被延續。&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;讓二手單車不只是交易，更是一種生活態度的傳承。&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="contact-info"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;📍 地址：請填入您的實體店面地址&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;📞 電話：請填入聯絡電話&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;✉️ Email：請填入聯絡信箱&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;🕐 營業時間：請填入營業時間&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function filterBikes() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const type = document.getElementById('bike-type').value;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const brand = document.getElementById('brand').value;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const priceMin = parseInt(document.getElementById('price-min').value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const priceMax = parseInt(document.getElementById('price-max').value) || Infinity;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const cards = document.querySelectorAll('.bike-card');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>cards.forEach(card =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const cardType = card.dataset.type;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const cardBrand = card.dataset.brand;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const cardPrice = parseInt(card.dataset.price);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const typeMatch = !type || cardType === type;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const brandMatch = !brand || cardBrand === brand;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const priceMatch = cardPrice &gt;= priceMin &amp;&amp; cardPrice &lt;= priceMax;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (typeMatch &amp;&amp; brandMatch &amp;&amp; priceMatch) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>card.style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>card.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <header>
+        <div class="logo">單車逗點 Q Cycling</div>
+        <div class="tagline">讓每一台單車，都有重生的逗點</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#bikes">單車選購</a></li>
+            <li><a href="#about">關於我們</a></li>
+            <li><a href="#consign">寄賣服務</a></li>
+            <li><a href="#contact">聯絡方式</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h2>二手單車的文藝復興</h2>
+        <p>每一台單車都有屬於它的故事，在時光的流轉中，它們曾陪伴過不同的人走過不同的風景。<br>
+        我們相信，這些單車值得被賦予新的生命，繼續踩踏在下一段旅程中。<br>
+        在這裡，你不只是購買一台二手單車，更是延續一段美好的騎行記憶。</p>
+    </section>
+
+    <div class="container">
+        <div class="filter-section">
+            <div class="filter-title">🔍 尋找您的理想單車</div>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="bike-type">車款類型</label>
+                    <select id="bike-type">
+                        <option value="">全部類型</option>
+                        <option value="road">公路車</option>
+                        <option value="mountain">登山車</option>
+                        <option value="city">城市車</option>
+                        <option value="folding">摺疊車</option>
+                        <option value="hybrid">混合車</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="brand">品牌</label>
+                    <select id="brand">
+                        <option value="">全部品牌</option>
+                        <option value="giant">Giant 捷安特</option>
+                        <option value="merida">Merida 美利達</option>
+                        <option value="trek">Trek</option>
+                        <option value="specialized">Specialized</option>
+                        <option value="others">其他品牌</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-min">價格範圍（最低）</label>
+                    <input type="number" id="price-min" placeholder="NT$ 0">
+                </div>
+                <div class="filter-group">
+                    <label for="price-max">價格範圍（最高）</label>
+                    <input type="number" id="price-max" placeholder="NT$ 50000">
+                </div>
+            </div>
+            <button class="btn-filter" onclick="filterBikes()">開始尋找</button>
+        </div>
+
+        <div class="bikes-grid" id="bikes-grid">
+            <!-- 範例單車卡片 -->
+            <div class="bike-card" data-type="road" data-brand="giant" data-price="15000">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Giant 捷安特</div>
+                    <div class="bike-name">TCR Advanced 2</div>
+                    <span class="bike-type">公路車</span>
+                    <div class="bike-desc">輕量化碳纖維車架，適合長途騎乘與競賽。車況良好，定期保養。這台車曾陪伴車主完成環島夢想，現在期待下一位騎士。</div>
+                    <div class="bike-price">NT$ 15,000 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="mountain" data-brand="merida" data-price="12000">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Merida 美利達</div>
+                    <div class="bike-name">Big Seven 500</div>
+                    <span class="bike-type">登山車</span>
+                    <div class="bike-desc">27.5吋輪徑，前避震系統，適合越野與山林探險。車主細心呵護，僅騎乘過數次，狀態接近新車。</div>
+                    <div class="bike-price">NT$ 12,000 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="city" data-brand="giant" data-price="6000">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Giant 捷安特</div>
+                    <div class="bike-name">Escape 3</div>
+                    <span class="bike-type">城市車</span>
+                    <div class="bike-desc">舒適的通勤好夥伴，輕鬆的騎乘姿勢適合日常代步。配有置物架，實用性極高。</div>
+                    <div class="bike-price">NT$ 6,000 <span class="bike-status status-reserved">已預約</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="folding" data-brand="others" data-price="8500">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Dahon</div>
+                    <div class="bike-name">K3 Plus</div>
+                    <span class="bike-type">摺疊車</span>
+                    <div class="bike-desc">輕巧便攜，三秒快速摺疊。適合通勤族，可輕鬆帶上捷運公車。含原廠攜車袋。</div>
+                    <div class="bike-price">NT$ 8,500 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="road" data-brand="trek" data-price="22000">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Trek</div>
+                    <div class="bike-name">Domane AL 3</div>
+                    <span class="bike-type">公路車</span>
+                    <div class="bike-desc">耐力型公路車，舒適幾何設計，適合長距離騎乘。Shimano Sora套件，穩定可靠。</div>
+                    <div class="bike-price">NT$ 22,000 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="hybrid" data-brand="specialized" data-price="18000">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Specialized</div>
+                    <div class="bike-name">Sirrus X 3.0</div>
+                    <span class="bike-type">混合車</span>
+                    <div class="bike-desc">結合公路車的速度與登山車的穩定性，適合多種路況。前避震，disc煞車系統。</div>
+                    <div class="bike-price">NT$ 18,000 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="city" data-brand="merida" data-price="5500">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Merida 美利達</div>
+                    <div class="bike-name">Crossway 100</div>
+                    <span class="bike-type">城市車</span>
+                    <div class="bike-desc">經典通勤車款，簡約設計。車況優良，鏈條變速系統順暢，適合預算有限的騎士。</div>
+                    <div class="bike-price">NT$ 5,500 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+
+            <div class="bike-card" data-type="mountain" data-brand="giant" data-price="9500">
+                <div class="bike-image"></div>
+                <div class="bike-info">
+                    <div class="bike-brand">Giant 捷安特</div>
+                    <div class="bike-name">ATX 810</div>
+                    <span class="bike-type">登山車</span>
+                    <div class="bike-desc">入門級登山車，適合休閒騎乘與輕度越野。車主愛護有加，定期維護保養。</div>
+                    <div class="bike-price">NT$ 9,500 <span class="bike-status status-available">可購買</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>單車逗點 Q Cycling</h3>
+            <p>我們相信每一台單車都值得被珍惜，每一段騎行記憶都值得被延續。</p>
+            <p>讓二手單車不只是交易，更是一種生活態度的傳承。</p>
+            <div class="contact-info">
+                <p>📍 地址：請填入您的實體店面地址</p>
+                <p>📞 電話：請填入聯絡電話</p>
+                <p>✉️ Email：請填入聯絡信箱</p>
+                <p>🕐 營業時間：請填入營業時間</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterBikes() {
+            const type = document.getElementById('bike-type').value;
+            const brand = document.getElementById('brand').value;
+            const priceMin = parseInt(document.getElementById('price-min').value) || 0;
+            const priceMax = parseInt(document.getElementById('price-max').value) || Infinity;
+            
+            const cards = document.querySelectorAll('.bike-card');
+            
+            cards.forEach(card => {
+                const cardType = card.dataset.type;
+                const cardBrand = card.dataset.brand;
+                const cardPrice = parseInt(card.dataset.price);
+                
+                const typeMatch = !type || cardType === type;
+                const brandMatch = !brand || cardBrand === brand;
+                const priceMatch = cardPrice >= priceMin && cardPrice <= priceMax;
+                
+                if (typeMatch && brandMatch && priceMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
