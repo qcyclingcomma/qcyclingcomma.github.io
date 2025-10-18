@@ -1467,27 +1467,74 @@ window.addEventListener('popstate', function(event) {
             'oth': '其他'
         };
 
-        // 設定語言切換
-        function setupLanguageSwitcher() {
-            const langBtns = document.querySelectorAll('.lang-btn');
-            
-            langBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    langBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 這裡可以添加實際的語言切換邏輯
-                    // 目前只是示範，實際應用中可能需要載入不同的語言文件
-                    const lang = this.dataset.lang;
-                    alert(`已切換到${this.textContent}介面 (功能示範)`);
-                });
+         // 設定頁面導航
+    function setupPageNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                
+                // 更新導航激活狀態
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 顯示對應頁面
+                showPage(pageId);
+                
+                // 在移動設備上關閉漢堡菜單
+                if (window.innerWidth <= 768) {
+                    closeHamburgerMenu();
+                }
             });
-        }
+        });
+    }
 
-        // 設定頁面導航
-        function setupPageNavigation() {
-            const navLinks = document.querySelectorAll('.nav-link');
+    // 顯示頁面
+    function showPage(pageId) {
+        // 隱藏所有頁面
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // 顯示目標頁面
+        document.getElementById(pageId).classList.add('active');
+        
+        // 如果是單車展示頁面，初始化篩選和搜尋
+        if (pageId === 'bikes') {
+            displayBikes(bikeData, 'bikes-container-bikes');
+            setupFilters('bikes');
+            setupSearch('bikes');
+        }
+    }
+
+    // 設定漢堡菜單
+    function setupHamburgerMenu() {
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const overlay = document.getElementById('overlay');
+        
+        if (hamburger && nav && overlay) {
+            hamburger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                // 防止背景滾動
+                if (nav.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
             
+            // 點擊遮罩層關閉菜單
+            overlay.addEventListener('click', function() {
+                closeHamburgerMenu();
+            });
+            
+            // 添加导航链接点击事件到移动菜单
+            const navLinks = nav.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1500,69 +1547,25 @@ window.addEventListener('popstate', function(event) {
                     // 顯示對應頁面
                     showPage(pageId);
                     
-                    // 在移動設備上關閉漢堡菜單
-                    if (window.innerWidth <= 768) {
-                        closeHamburgerMenu();
-                    }
-                });
-            });
-        }
-
-        // 顯示頁面
-        function showPage(pageId) {
-            // 隱藏所有頁面
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // 顯示目標頁面
-            document.getElementById(pageId).classList.add('active');
-            
-            // 如果是單車展示頁面，初始化篩選和搜尋
-            if (pageId === 'bikes') {
-                displayBikes(bikeData, 'bikes-container-bikes');
-                setupFilters('bikes');
-                setupSearch('bikes');
-            }
-        }
-
-        // 設定漢堡菜單
-        function setupHamburgerMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const nav = document.getElementById('nav');
-            const overlay = document.getElementById('overlay');
-            
-            if (hamburger && nav && overlay) {
-                hamburger.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                    overlay.classList.toggle('active');
-                    
-                    // 防止背景滾動
-                    if (nav.classList.contains('active')) {
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = '';
-                    }
-                });
-                
-                // 點擊遮罩層關閉菜單
-                overlay.addEventListener('click', function() {
+                    // 關閉漢堡菜單
                     closeHamburgerMenu();
                 });
-            }
+            });
         }
+    }
+    
+    // 關閉漢堡菜單
+    function closeHamburgerMenu() {
+        const nav = document.getElementById('nav');
+        const overlay = document.getElementById('overlay');
         
-        // 關閉漢堡菜單
-        function closeHamburgerMenu() {
-            const nav = document.getElementById('nav');
-            const overlay = document.getElementById('overlay');
-            
-            if (nav && overlay) {
-                nav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+        if (nav && overlay) {
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
         }
+    }
+
 
         /* 
         如何添加新的單車項目：
