@@ -180,7 +180,6 @@
         /* 橫幅區域 */
         .banner {
             height: 400px;
-            /* background-image: url('https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); */
             background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/QcycingLogo.png?raw=true&');
             background-size: cover;
             background-position: center;
@@ -650,7 +649,7 @@
                 background-color: white;
                 box-shadow: -5px 0 15px rgba(0,0,0,0.1);
                 transition: right 0.3s ease;
-                z-index: 1000;
+                z-index: 1001; /* 提高z-index確保在遮罩層之上 */
                 padding-top: 80px;
             }
             
@@ -731,7 +730,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
-            z-index: 999;
+            z-index: 1000; /* 確保遮罩層在導航菜單之下 */
         }
         
         .overlay.active {
@@ -783,7 +782,6 @@
     <!-- 橫幅區域 -->
    <section class="banner">
         <div class="banner-title">
-            <!-- <h2><p>請加入我們</p></h2> -->
             <p>請一起參與，讓每一台單車，都有重生的逗點</p>
         </div>
     </section> 
@@ -941,102 +939,26 @@
                     <p style="margin-bottom: 20px;">感謝您考慮將愛車交給我們寄賣！我們會透過專業的整理與行銷，為您的單車找到最好的歸宿。</p>
                     <p style="margin-bottom: 20px; font-weight: bold;">為了評估您的愛車，請提供以下資訊：</p>
                     
-<a href="https://forms.gle/fEWBRMTKnSMRCMJy9" target="_blank">單車逗點 - 賣家寄賣評估表單</a></p>
-
-               <!--     <div class="form-group">
-                        <label for="seller-bike-model">單車品牌與型號：</label>
-                        <input type="text" id="seller-bike-model" placeholder="例：Giant TCR Advanced 2">
-                    </div>
+                    <a href="https://forms.gle/fEWBRMTKnSMRCMJy9" target="_blank">單車逗點 - 賣家寄賣評估表單</a>
                     
-                    <div class="form-group">
-                        <label for="seller-bike-year">購買年份與車況：</label>
-                        <textarea id="seller-bike-year" placeholder="例：2020年購入，約8成新，正常使用痕跡，變速順暢，無事故"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="seller-bike-damage">有無明顯刮傷或損壞：</label>
-                        <textarea id="seller-bike-damage" placeholder="例：龍頭有一處掉漆，其餘正常使用痕跡"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="seller-bike-price">期望售價及底價：</label>
-                        <input type="text" id="seller-bike-price" placeholder="例：18,000元～15,000元">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="seller-bike-location">單車目前所在地：</label>
-                        <input type="text" id="seller-bike-location" placeholder="例：新北市新店區">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="seller-bike-delivery">可否配合將單車送至竹南本店：</label>
-                        <select id="seller-bike-delivery">
-                            <option value="">請選擇</option>
-                            <option value="yes">可</option>
-                            <option value="no">否，需請你們來取（酌收運費500-1000）</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="seller-bike-photos">請提供愛車照片：</label>
-                        <input type="file" id="seller-bike-photos" multiple>
-                        <p style="font-size: 0.9rem; color: var(--light-text); margin-top: 5px;">請上傳「整車左側、右側、傳動系統、煞車變速、瑕疵處」等照片</p>
-                    </div>
-                    -->
                     <p style="margin-bottom: 20px; font-weight: bold;">填寫完畢並提供照片後，我們將在 1-2個工作天內 由專人與您聯繫，安排後續的實體評估。我們的寄賣抽成詳情也會在評估時一併說明！</p>
           
-<a href="https://forms.gle/fEWBRMTKnSMRCMJy9" target="_blank">
-  <button class="submit-btn">提交評估申請</button>
-</a>        
-              <!--        <button class="submit-btn">提交評估申請</button> -->
+                    <a href="https://forms.gle/fEWBRMTKnSMRCMJy9" target="_blank">
+                        <button class="submit-btn">提交評估申請</button>
+                    </a>        
                 </div>
                 
                 <div class="contact-form">
                     <h2>買家購車需求</h2>
                     <p style="margin-bottom: 20px;">感謝您選擇買車服務！請提供以下資訊，我們將為您匹配最合適的單車：</p>
 
-         <p>或直接開啟表單：<a href="https://forms.gle/zaGtKZhtSq7A994PA" target="_blank">單車逗點 - 買家購車需求表單</a></p>      
+                    <p>或直接開啟表單：<a href="https://forms.gle/zaGtKZhtSq7A994PA" target="_blank">單車逗點 - 買家購車需求表單</a></p>       
      
-               <!--     <div class="form-group">
-                        <label for="buyer-budget">預算範圍：</label>
-                        <input type="text" id="buyer-budget" placeholder="例如：10,000元～50,000">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="buyer-bike-type">需求車種：</label>
-                        <input type="text" id="buyer-bike-type" placeholder="例如：公路車、登山車、折疊車、城市車，廠牌、車型、如TCR等">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="buyer-bike-condition">車況要求：</label>
-                        <input type="text" id="buyer-bike-condition" placeholder="例如：希望8成新以上、功能完全正常">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="buyer-location">您的地點：</label>
-                        <input type="text" id="buyer-location" placeholder="例如：苗栗竹南">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="buyer-delivery">自取或運送：</label>
-                        <select id="buyer-delivery">
-                            <option value="">請選擇</option>
-                            <option value="pickup">自取</option>
-                            <option value="delivery">需要運送（酌收運費500-1000）</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="buyer-specific-bike">想購買網頁上的哪一台車（可選）：</label>
-                        <input type="text" id="buyer-specific-bike" placeholder="請輸入車子編號或型號">
-                    </div>
-             -->       
                     <p style="margin-bottom: 20px;">我們收到後會盡快為您尋找合適的單車！</p>
 
-             <a href="https://forms.gle/zaGtKZhtSq7A994PA" target="_blank">
-  <button class="submit-btn">提交購車需求</button>
-</a>       
-              <!--       <button class="submit-btn">提交購車需求</button>   -->
+                    <a href="https://forms.gle/zaGtKZhtSq7A994PA" target="_blank">
+                        <button class="submit-btn">提交購車需求</button>
+                    </a>       
                 </div>
             </div>
         </div>
