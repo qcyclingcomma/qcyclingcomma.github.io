@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>單車逗點 Q Cycling - 二手單車寄賣專店</title>
-    <!-- 將 Google 驗證碼貼在這裡 -->
-    <meta name="google-site-verification" content="sYWC_YoPpVxLMdNKVCsmnI60Wbq8mr04WOkpLO8qnys" />
     <style>
         /* 全局樣式 */
         :root {
@@ -155,11 +153,33 @@
             border-color: var(--primary-color);
         }
         
+        /* 漢堡菜單按鈕 */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-color);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
         /* 橫幅區域 */
         .banner {
             height: 400px;
             /* background-image: url('https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); */
-            background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/QcycingLogo.png?raw=true&');
+            background-image: url('QcycingLogo.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -613,53 +633,135 @@
         
         /* 響應式設計 */
         @media (max-width: 768px) {
-            .header-top {
-                flex-direction: column;
-                text-align: center;
+            /* 新增漢堡菜單樣式 */
+            .hamburger {
+                display: flex;
             }
             
-            .logo-area {
-                margin-bottom: 15px;
-                justify-content: center;
+            /* 隱藏導航菜單 */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: white;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                padding-top: 80px;
+            }
+            
+            nav.active {
+                right: 0;
             }
             
             nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
+                flex-direction: column;
+                padding: 0 20px;
             }
             
             nav ul li {
-                margin: 5px 10px;
+                margin: 0 0 20px 0;
             }
             
+            nav ul li a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.1rem;
+            }
+            
+            /* 語言切換器在移動設備上隱藏 */
+            .language-switcher {
+                display: none;
+            }
+            
+            /* 調整 Header 佈局 */
+            .header-top {
+                flex-direction: row;
+                padding: 10px 0;
+            }
+            
+            .logo-area {
+                margin-bottom: 0;
+            }
+            
+            /* 縮小 Logo 區域 */
+            .profile-img {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.8rem;
+            }
+            
+            /* 調整橫幅 */
             .banner {
-                height: 300px;
+                height: 250px;
+                margin-bottom: 25px;
             }
             
             .banner-title h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .banner-title p {
+                font-size: 1rem;
             }
             
             .contact-container, .bike-detail-container, .about-container {
                 flex-direction: column;
             }
         }
+        
+        /* 添加遮罩層 */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <!-- 遮罩層 -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- 頁首 -->
     <header>
         <div class="container">
             <div class="header-top">
                 <div class="logo-area">
                     <!-- 圓形頭像 - 請替換為您的實際圖片 -->
-                    <img src="https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/bigheadlogo.jpg?raw=true&" alt="單車逗點頭像" class="profile-img">
+                    <img src="bigheadlogo.jpg" alt="單車逗點頭像" class="profile-img">
                     <div class="logo-text">
                         <h1>單車逗點 Q Cycling</h1>
                         <p>一台車的重生，一段旅程的開始</p>
                     </div>
                 </div>
-                <nav>
+                
+                <!-- 漢堡菜單按鈕 -->
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav id="nav">
                     <ul>
                         <li><a href="#" class="nav-link active" data-page="home">首頁</a></li>
                         <li><a href="#" class="nav-link" data-page="bikes">單車展示</a></li>
@@ -979,68 +1081,6 @@
     </footer>
 
     <script>
-
-<!-- 保持現有結構開始，但添加以下改進 -->
-
-
-// 添加頁面預載入優化
-document.addEventListener('DOMContentLoaded', function() {
-    // 預載入其他頁面的關鍵資源（可選）
-    const pages = ['bikes', 'about', 'contact'];
-    
-    // 添加頁面切換動畫
-    function smoothPageTransition(newPageId) {
-        const currentPage = document.querySelector('.page.active');
-        const newPage = document.getElementById(newPageId);
-        
-        if (currentPage && newPage) {
-            // 淡出當前頁面
-            currentPage.style.opacity = '0';
-            currentPage.style.transition = 'opacity 0.3s ease';
-            
-            setTimeout(() => {
-                currentPage.classList.remove('active');
-                newPage.classList.add('active');
-                newPage.style.opacity = '0';
-                
-                // 淡入新頁面
-                setTimeout(() => {
-                    newPage.style.opacity = '1';
-                    newPage.style.transition = 'opacity 0.3s ease';
-                    
-                    // 滾動到頂部
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 50);
-            }, 300);
-        }
-    }
-
-    // 更新頁面切換函數
-    function showPage(pageId) {
-        smoothPageTransition(pageId);
-        
-        // 更新導航激活狀態
-        document.querySelectorAll('.nav-link').forEach(nav => {
-            nav.classList.remove('active');
-            if (nav.getAttribute('data-page') === pageId) {
-                nav.classList.add('active');
-            }
-        });
-        
-        // 更新瀏覽器歷史記錄（可選）
-        history.pushState({ page: pageId }, '', `#${pageId}`);
-    }
-});
-
-// 處理瀏覽器前進/後退按鈕
-window.addEventListener('popstate', function(event) {
-    if (event.state && event.state.page) {
-        showPage(event.state.page);
-    }
-});
-
-<!-- 保持現有結構結束，但添加以下改進 -->
-
         // 單車資料 - 您可以在這裡添加、修改或刪除單車項目
         const bikeData = [
             {
@@ -1052,7 +1092,7 @@ window.addEventListener('popstate', function(event) {
                 year: 2020,
                 condition: "8成新",
                 status: "sold",
-                image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold8.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "sold8.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 description: "輕量碳纖維車架，Shimano 105變速系統，性能優越的入門公路車。適合剛接觸公路車運動的騎行者，車況良好，變速順暢。",
                 specs: "車架：碳纖維 | 變速：Shimano 105 22速 | 重量：8.2kg"
             },
@@ -1065,7 +1105,7 @@ window.addEventListener('popstate', function(event) {
                 year: 2025,
                 condition: "9.5成新",
                 status: "available",
-                image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/Merida1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "Merida1.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 description: "鋁合金車架，舒適的騎乘幾何，適合長途騎行。前後外胎是high road，鈦合金螺絲，碳水壺架,全車精品,碳纖維座管。",
                 specs: "車架： M 碳纖維 | 適合身高：173～182| 變速：Shimano Claris 16速 | 重量：9.1kg"
             },
@@ -1091,7 +1131,7 @@ window.addEventListener('popstate', function(event) {
                 year: 2020,
                 condition: "8.5成新",
                 status: "sold",
-                image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "sold6.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 description: "舒適型公路車，配備減震技術，適合不平坦路面。車況極佳，保養良好。",
                 specs: "車架：鋁合金 | 變速：Shimano Claris 16速 | 重量：9.6kg"
             },
@@ -1104,7 +1144,7 @@ window.addEventListener('popstate', function(event) {
                 year: 2025,
                 condition: "9.5成新",
                 status: "available",
-                image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/cyclon.jpg?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "cyclon.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 description: "全部碳纖維的車架及輪組，加上全套電子變速可支援到14段飛輪,一體試車把，全車隱藏線，油壓碟煞，3D打印透氣舒適支撐座椅 CP值爆表。",
                 specs: "車架： 碳纖維 | 適合身高：175～180| 變速：12x2,24速 | 重量：9kg"
             },
@@ -1117,7 +1157,7 @@ window.addEventListener('popstate', function(event) {
                 year: 2022,
                 condition: "9.5成新",
                 status: "sold",
-                image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "sold2.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 description: "平把公路車，適合城市通勤與休閒騎行。幾乎全新，僅試騎過一次。",
                 specs: "車架：鋁合金 | 變速：Shimano Altus 16速 | 重量：11.3kg"
             },
@@ -1130,7 +1170,7 @@ window.addEventListener('popstate', function(event) {
                 year: 2021,
                 condition: "9成新",
                 status: "sold",
-                image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold4.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "sold4.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 description: "輕量鋁合金車架，Shimano 105變速系統，性能優越的公路車。車況極佳，保養完善。",
                 specs: "車架：鋁合金 | 變速：Shimano 105 22速 | 重量：8.5kg"
             },
@@ -1165,6 +1205,9 @@ window.addEventListener('popstate', function(event) {
             
             // 設定頁面切換
             setupPageNavigation();
+            
+            // 設定漢堡菜單
+            setupHamburgerMenu();
         });
 
         // 顯示單車卡片
@@ -1392,6 +1435,11 @@ window.addEventListener('popstate', function(event) {
                     
                     // 顯示對應頁面
                     showPage(pageId);
+                    
+                    // 在移動設備上關閉漢堡菜單
+                    if (window.innerWidth <= 768) {
+                        closeHamburgerMenu();
+                    }
                 });
             });
         }
@@ -1411,6 +1459,44 @@ window.addEventListener('popstate', function(event) {
                 displayBikes(bikeData, 'bikes-container-bikes');
                 setupFilters('bikes');
                 setupSearch('bikes');
+            }
+        }
+
+        // 設定漢堡菜單
+        function setupHamburgerMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+            const overlay = document.getElementById('overlay');
+            
+            if (hamburger && nav && overlay) {
+                hamburger.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                    
+                    // 防止背景滾動
+                    if (nav.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // 點擊遮罩層關閉菜單
+                overlay.addEventListener('click', function() {
+                    closeHamburgerMenu();
+                });
+            }
+        }
+        
+        // 關閉漢堡菜單
+        function closeHamburgerMenu() {
+            const nav = document.getElementById('nav');
+            const overlay = document.getElementById('overlay');
+            
+            if (nav && overlay) {
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
         }
 
