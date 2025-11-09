@@ -1881,5 +1881,112 @@ function setupKnowledgeCards() {
     });
 }    
     </script>
+
+<!-- ✅ Q Cycling Autofeed: Google Sheets → API → Site (no-scrape) -->
+<script>
+(()=>{
+  const API_URL = "https://script.google.com/macros/s/AKfycbw2caULi9A0qBZ7iKhGaRrwOm8GGQHlJlCgswQMZQJmgXCkjGYAqQL8230J8iw550wmTg/exec";
+
+  function toDirectImage(url){
+    if(!url) return "";
+    const s = String(url);
+    const m1 = s.match(/https?:\/\/drive\.google\.com\/file\/d\/([^/]+)/i);
+    if(m1 && m1[1]) return `https://drive.google.com/uc?export=view&id=${m1[1]}`;
+    const m2 = s.match(/[?&]id=([^&]+)/i);
+    if(s.includes("drive.google.com") && m2 && m2[1]) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
+    return s;
+  }
+
+  function imagesFrom(bike){
+    return [bike.img1, bike.img2, bike.img3, bike.img4, bike.img5]
+      .map(toDirectImage)
+      .filter(u => !!u && String(u).trim() !== "");
+  }
+
+  function formatPrice(n){
+    const num = Number(n || 0);
+    return "NT$ " + num.toLocaleString("zh-TW");
+  }
+
+  function bikeCardHTML(bike, idx, idPrefix){
+    const imgs = imagesFrom(bike);
+    const hero = imgs[0] || "";
+    const id = (idPrefix || "b") + "-" + (bike.id || idx);
+    const brand = bike.brand || "";
+    const model = bike.model || "";
+    const size  = bike.size  || "";
+    const price = formatPrice(bike.price);
+    const desc  = bike.desc  || "";
+
+    const thumbs = imgs.length > 1 ? `<div class="thumbs">${
+      imgs.map((u, i) => `
+        <button class="thumb" data-target="${id}" data-src="${u}" aria-label="thumb ${i+1}">
+          <img src="${u}" alt="thumb ${i+1}" loading="lazy">
+        </button>
+      `).join("")
+    }</div>` : "";
+
+    return `
+      <article class="bike-card">
+        <div class="media">
+          <div class="hero">
+            <img id="${id}-hero" src="${hero}" alt="${brand} ${model}" loading="lazy">
+          </div>
+          ${thumbs}
+        </div>
+        <div class="info">
+          <h3>${brand} ${model}</h3>
+          <p class="meta">尺寸：${size || "—"}</p>
+          <p class="price">${price}</p>
+          <p class="desc">${desc}</p>
+        </div>
+      </article>
+    `;
+  }
+
+  function bindThumbSwitching(scope){
+    (scope || document).querySelectorAll(".thumb").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        const src = btn.getAttribute("data-src");
+        const hero = document.getElementById(`${target}-hero`);
+        if(hero && src) hero.src = src;
+      });
+    });
+  }
+
+  async function loadFromAPI(){
+    try {
+      const res = await fetch(API_URL, { cache: "no-store" });
+      const data = await res.json();
+      const items = Array.isArray(data) ? data : [];
+
+      // Featured (首頁) 容器
+      const featured = items.slice().sort((a,b)=>Number(b.price||0)-Number(a.price||0)).slice(0,4);
+      const featuredEl = document.getElementById("featured-bikes-container");
+      if (featuredEl) {
+        featuredEl.innerHTML = featured.map((b,i)=>bikeCardHTML(b,i,"f")).join("");
+        bindThumbSwitching(featuredEl);
+      }
+
+      // 列表頁容器
+      const listEl = document.getElementById("bikes-container-bikes");
+      if (listEl) {
+        const sorted = items.slice().sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+        listEl.innerHTML = sorted.map((b,i)=>bikeCardHTML(b,i,"l")).join("");
+        bindThumbSwitching(listEl);
+      }
+    } catch (err) {
+      console.error("Load API failed:", err);
+      const listEl = document.getElementById("bikes-container-bikes");
+      if (listEl) listEl.innerHTML = `<p>載入失敗，請稍候再試。</p>`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadFromAPI);
+})();
+</script>
+<!-- ✅ /Q Cycling Autofeed -->
+
 </body>
 </html>
