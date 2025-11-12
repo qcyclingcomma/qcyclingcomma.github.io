@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>單車展示 - 單車逗點 Q Cycling</title>
+    <title>單車逗點 Q Cycling - 單車展示</title>
+    <meta name="google-site-verification" content="sYWC_YoPpVxLMdNKVCsmnI60Wbq8mr04WOkpLO8qnys" />
     <style>
+        /* 全局樣式 */
         :root {
             --primary-color: #6b8e23;
             --secondary-color: #d4e6b5;
@@ -32,42 +34,193 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 0 15px;
         }
         
-        /* Header */
+        /* 頁面容器 */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* 頁首樣式 */
         header {
             background-color: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        .header-content {
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
         }
         
-        .logo h1 {
-            color: var(--primary-color);
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
             font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1px;
         }
         
-        .back-link {
-            padding: 10px 20px;
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            font-style: italic;
+        }
+        
+        /* 導航欄 */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        /* 語言切換 */
+        .language-switcher {
+            display: flex;
+            margin-left: 20px;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            margin: 0 2px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
             background-color: var(--primary-color);
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-color: var(--primary-color);
         }
         
-        .back-link:hover {
-            background-color: var(--accent-color);
+        /* 漢堡菜單按鈕 */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
         }
         
-        /* Filters */
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-color);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        /* 橫幅區域 */
+        .banner {
+            height: 400px;
+            background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/QcycingLogo.png?raw=true&');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+        }
+        
+        .banner-title {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            width: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .banner-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .banner-title p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        /* 篩選區域 */
         .filters {
             background-color: white;
             padding: 20px;
@@ -123,338 +276,4 @@
         
         .search-box button {
             padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-        
-        /* Bikes Grid */
-        .bikes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-        
-        .bike-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        
-        .bike-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-        }
-        
-        .bike-status {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            z-index: 2;
-        }
-        
-        .status-available {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .status-reserved {
-            background-color: #ff9800;
-            color: white;
-        }
-        
-        .status-sold {
-            background-color: #f44336;
-            color: white;
-        }
-        
-        .bike-image {
-            height: 200px;
-            background-color: #f0f0f0;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .bike-info {
-            padding: 20px;
-        }
-        
-        .bike-code {
-            font-size: 0.8rem;
-            color: var(--light-text);
-            margin-bottom: 5px;
-        }
-        
-        .bike-name {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-        
-        .bike-summary {
-            font-size: 0.9rem;
-            color: var(--light-text);
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-        
-        .bike-details {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: var(--light-text);
-        }
-        
-        .bike-price {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        
-        .view-details {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        
-        .view-details:hover {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        /* Error Message */
-        .error-message {
-            text-align: center;
-            padding: 50px;
-            color: #f44336;
-        }
-
-        @media (max-width: 768px) {
-            .bikes-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>單車逗點 - 單車展示</h1>
-                </div>
-                <a href="index.html" class="back-link">返回首頁</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Filters -->
-        <section class="filters">
-            <div class="filter-group">
-                <h3>單車類型</h3>
-                <div class="filter-options">
-                    <button class="filter-btn active" data-type="all">全部</button>
-                    <button class="filter-btn" data-type="公路車">公路車</button>
-                    <button class="filter-btn" data-type="登山車">登山車</button>
-                    <button class="filter-btn" data-type="城市車">城市車</button>
-                    <button class="filter-btn" data-type="折疊車">折疊車</button>
-                    <button class="filter-btn" data-type="gravel">Gravel</button>
-                </div>
-            </div>
-            
-            <div class="filter-group">
-                <h3>價格範圍</h3>
-                <div class="filter-options">
-                    <button class="filter-btn active" data-price="all">全部</button>
-                    <button class="filter-btn" data-price="0-5000">5,000元以下</button>
-                    <button class="filter-btn" data-price="5000-10000">5,000-10,000元</button>
-                    <button class="filter-btn" data-price="10000-20000">10,000-20,000元</button>
-                    <button class="filter-btn" data-price="20000-50000">20,000-50,000元</button>
-                    <button class="filter-btn" data-price="50000+">50,000元以上</button>
-                </div>
-            </div>
-            
-            <div class="search-box">
-                <input type="text" placeholder="輸入關鍵字搜尋單車型號或品牌..." id="search-input">
-                <button id="search-btn">搜尋</button>
-            </div>
-        </section>
-
-        <!-- Loading -->
-        <div class="loading" id="loading">載入中...</div>
-
-        <!-- Bikes Grid -->
-        <section class="bikes-grid" id="bikes-container" style="display: none;">
-            <!-- 單車卡片將由 JavaScript 動態生成 -->
-        </section>
-
-        <!-- Error Message -->
-        <div class="error-message" id="error-message" style="display: none;">
-            <h2>無法載入單車資料</h2>
-            <p>請稍後再試或聯繫我們</p>
-        </div>
-    </main>
-
-    <script>
-        // ⚠️ 重要：請替換成你的 Google Apps Script Web App URL
-        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-        
-        let allBikes = [];
-        let filteredBikes = [];
-
-        // 載入單車資料
-        async function loadBikes() {
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL);
-                const data = await response.json();
-                
-                if (data.success) {
-                    allBikes = data.bikes;
-                    filteredBikes = allBikes;
-                    displayBikes(filteredBikes);
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('bikes-container').style.display = 'grid';
-                } else {
-                    throw new Error('資料載入失敗');
-                }
-            } catch (error) {
-                console.error('Error loading bikes:', error);
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('error-message').style.display = 'block';
-            }
-        }
-
-        // 顯示單車卡片
-        function displayBikes(bikes) {
-            const container = document.getElementById('bikes-container');
-            container.innerHTML = '';
-            
-            if (bikes.length === 0) {
-                container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 40px;">沒有找到符合條件的單車</p>';
-                return;
-            }
-            
-            bikes.forEach(bike => {
-                const statusText = bike.status === 'available' ? '可購買' : 
-                                 bike.status === 'reserved' ? '已預訂' : '已售出';
-                const statusClass = bike.status === 'available' ? 'status-available' : 
-                                  bike.status === 'reserved' ? 'status-reserved' : 'status-sold';
-                
-                const bikeCard = document.createElement('div');
-                bikeCard.className = 'bike-card';
-                bikeCard.innerHTML = `
-                    <div class="bike-status ${statusClass}">${statusText}</div>
-                    <div class="bike-image" style="background-image: url('${bike.image || 'https://via.placeholder.com/400x300?text=No+Image'}')"></div>
-                    <div class="bike-info">
-                        <div class="bike-code">${bike.id}</div>
-                        <h3 class="bike-name">${bike.name}</h3>
-                        <div class="bike-summary">${bike.summary || ''}</div>
-                        <div class="bike-details">
-                            <span>${bike.year}年</span>
-                            <span>${bike.condition}</span>
-                        </div>
-                        <div class="bike-price">NT$ ${parseInt(bike.price).toLocaleString()}</div>
-                        <a href="bike-detail.html?id=${bike.id}" class="view-details">查看詳情</a>
-                    </div>
-                `;
-                container.appendChild(bikeCard);
-            });
-        }
-
-        // 設定篩選功能
-        function setupFilters() {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const parent = this.parentElement;
-                    const siblings = parent.querySelectorAll('.filter-btn');
-                    siblings.forEach(sibling => sibling.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    applyFilters();
-                });
-            });
-        }
-
-        // 應用篩選條件
-        function applyFilters() {
-            const typeFilter = document.querySelector('[data-type].active')?.dataset.type || 'all';
-            const priceFilter = document.querySelector('[data-price].active')?.dataset.price || 'all';
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
-            
-            filteredBikes = allBikes.filter(bike => {
-                // 類型篩選
-                if (typeFilter !== 'all' && bike.type !== typeFilter) return false;
-                
-                // 價格篩選
-                const price = parseInt(bike.price);
-                if (priceFilter !== 'all') {
-                    if (priceFilter === '0-5000' && price > 5000) return false;
-                    if (priceFilter === '5000-10000' && (price < 5000 || price > 10000)) return false;
-                    if (priceFilter === '10000-20000' && (price < 10000 || price > 20000)) return false;
-                    if (priceFilter === '20000-50000' && (price < 20000 || price > 50000)) return false;
-                    if (priceFilter === '50000+' && price < 50000) return false;
-                }
-                
-                // 搜尋篩選
-                if (searchTerm !== '') {
-                    const searchableText = `${bike.name} ${bike.brand} ${bike.id} ${bike.summary}`.toLowerCase();
-                    if (!searchableText.includes(searchTerm)) return false;
-                }
-                
-                return true;
-            });
-            
-            displayBikes(filteredBikes);
-        }
-
-        // 設定搜尋功能
-        function setupSearch() {
-            const searchInput = document.getElementById('search-input');
-            const searchBtn = document.getElementById('search-btn');
-            
-            searchBtn.addEventListener('click', applyFilters);
-            searchInput.addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') {
-                    applyFilters();
-                }
-            });
-        }
-
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            loadBikes();
-            setupFilters();
-            setupSearch();
-        });
-    </script>
-</body>
-</html>
+            background
