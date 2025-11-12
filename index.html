@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>單車逗點 Q Cycling - 二手單車寄賣專店</title>
-    <meta name="google-site-verification" content="sYWC_YoPpVxLMdNKVCsmnI60Wbq8mr04WOkpLO8qnys" />
+    <title>單車展示 - 單車逗點 Q Cycling</title>
     <style>
-        /* 全局樣式 */
         :root {
             --primary-color: #6b8e23;
             --secondary-color: #d4e6b5;
@@ -34,193 +32,42 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 20px 15px;
         }
         
-        /* 頁面容器 */
-        .page {
-            display: none;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        /* 頁首樣式 */
+        /* Header */
         header {
             background-color: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 15px 0;
+            margin-bottom: 30px;
         }
         
-        .logo-area {
+        .header-content {
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary-color);
-            margin-right: 15px;
-        }
-        
-        .logo-text h1 {
+        .logo h1 {
+            color: var(--primary-color);
             font-size: 1.8rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            letter-spacing: 1px;
         }
         
-        .logo-text p {
-            font-size: 0.9rem;
-            color: var(--light-text);
-            font-style: italic;
-        }
-        
-        /* 導航欄 */
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
+        .back-link {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
             text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         
-        nav ul li a:hover {
-            color: var(--primary-color);
+        .back-link:hover {
+            background-color: var(--accent-color);
         }
         
-        nav ul li a.active {
-            color: var(--primary-color);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width 0.3s;
-        }
-        
-        nav ul li a:hover::after, nav ul li a.active::after {
-            width: 100%;
-        }
-        
-        /* 語言切換 */
-        .language-switcher {
-            display: flex;
-            margin-left: 20px;
-        }
-        
-        .lang-btn {
-            background: none;
-            border: 1px solid #ddd;
-            padding: 5px 10px;
-            margin: 0 2px;
-            cursor: pointer;
-            border-radius: 3px;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-        }
-        
-        .lang-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-        
-        /* 漢堡菜單按鈕 */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
-        
-        .hamburger span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: var(--text-color);
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-        
-        /* 橫幅區域 */
-        .banner {
-            height: 400px;
-            background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/QcycingLogo.png?raw=true&');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            position: relative;
-            margin-bottom: 40px;
-        }
-        
-        .banner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
-        }
-        
-        .banner-title {
-            position: relative;
-            z-index: 1;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            width: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        
-        .banner-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .banner-title p {
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-        
-        /* 篩選區域 */
+        /* Filters */
         .filters {
             background-color: white;
             padding: 20px;
@@ -281,102 +128,17 @@
             border: none;
             border-radius: 0 4px 4px 0;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
         
-        .search-box button:hover {
-            background-color: var(--accent-color);
-        }
-
-        /* 知識卡片區域 */
-        .knowledge-section {
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
+        /* Loading */
+        .loading {
             text-align: center;
-            margin-bottom: 30px;
+            padding: 50px;
+            font-size: 1.2rem;
             color: var(--primary-color);
-            position: relative;
-            padding-bottom: 15px;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: var(--accent-color);
-        }
-        
-        .knowledge-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .knowledge-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .knowledge-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-        }
-        
-        .knowledge-card-image {
-            height: 180px;
-            background-color: #f0f0f0;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .knowledge-card-content {
-            padding: 20px;
-        }
-        
-        .knowledge-card h3 {
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            font-size: 1.3rem;
-        }
-        
-        .knowledge-card p {
-            color: var(--light-text);
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .read-more {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        
-        .read-more:hover {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        /* 精選單車區域 */
-        .featured-bikes {
-            margin-bottom: 50px;
-        }
-        
+        /* Bikes Grid */
         .bikes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -452,10 +214,6 @@
             color: var(--light-text);
             margin-bottom: 10px;
             line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
         
         .bike-details {
@@ -489,1504 +247,214 @@
             background-color: var(--accent-color);
             color: white;
         }
-        
-        /* 品牌介紹區域 */
-        .brands-section {
-            margin-bottom: 50px;
-        }
-        
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .brand-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+        /* Error Message */
+        .error-message {
             text-align: center;
-            padding: 20px;
-            transition: transform 0.3s;
+            padding: 50px;
+            color: #f44336;
         }
-        
-        .brand-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .brand-logo {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        
-        .brand-logo img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        .brand-card h3 {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .brand-card p {
-            font-size: 0.9rem;
-            color: var(--light-text);
-            line-height: 1.5;
-        }
-        
-        /* 單車詳情頁面 */
-        .bike-detail-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .bike-detail-gallery {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .bike-main-image {
-            height: 400px;
-            background-color: #f0f0f0;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .bike-thumbnails {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .bike-thumbnail {
-            width: 80px;
-            height: 80px;
-            background-color: #f0f0f0;
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-        
-        .bike-thumbnail.active, .bike-thumbnail:hover {
-            border-color: var(--primary-color);
-        }
-        
-        .bike-detail-info {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
-        
-        .bike-detail-info h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        
-        .bike-detail-info .bike-code {
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-        
-        .bike-detail-info .bike-price {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        
-        .bike-specs {
-            margin-bottom: 20px;
-        }
-        
-        .bike-specs p {
-            margin-bottom: 8px;
-        }
-        
-        .bike-description {
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-        
-        .contact-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
-        
-        .contact-btn:hover {
-            background-color: var(--accent-color);
-        }
-        
-        /* 關於我們頁面 */
-        .about-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            height: 400px;
-            background-color: #f0f0f0;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-        }
-        
-        .about-content {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
-        
-        .about-content h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        
-        .about-content p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        
-        /* 聯絡我們頁面樣式 */
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
-        
-        .contact-form h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            padding: 12px 25px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: var(--accent-color);
-        }
-        
-        /* 頁腳樣式 */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 20px;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-        }
-        
-        .footer-section p, .footer-section a {
-            color: #bdc3c7;
-            margin-bottom: 10px;
-            display: block;
-            text-decoration: none;
-        }
-        
-        .footer-section a:hover {
-            color: white;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #34495e;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary-color);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #34495e;
-            color: #95a5a6;
-            font-size: 0.9rem;
-        }
-        
-        /* 響應式設計 */
+
         @media (max-width: 768px) {
-            /* 新增漢堡菜單樣式 */
-            .hamburger {
-                display: flex;
-            }
-            
-            /* 隱藏導航菜單 */
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: white;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                z-index: 1000;
-                padding-top: 80px;
-            }
-            
-            nav.active {
-                right: 0;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                padding: 0 20px;
-            }
-            
-            nav ul li {
-                margin: 0 0 20px 0;
-            }
-            
-            nav ul li a {
-                display: block;
-                padding: 10px 0;
-                font-size: 1.1rem;
-            }
-            
-            /* 語言切換器在移動設備上隱藏 */
-            .language-switcher {
-                display: none;
-            }
-            
-            /* 調整 Header 佈局 */
-            .header-top {
-                flex-direction: row;
-                padding: 10px 0;
-            }
-            
-            .logo-area {
-                margin-bottom: 0;
-            }
-            
-            /* 縮小 Logo 區域 */
-            .profile-img {
-                width: 50px;
-                height: 50px;
-                margin-right: 10px;
-            }
-            
-            .logo-text h1 {
-                font-size: 1.3rem;
-            }
-            
-            .logo-text p {
-                font-size: 0.8rem;
-            }
-            
-            /* 調整橫幅 */
-            .banner {
-                height: 250px;
-                margin-bottom: 25px;
-            }
-            
-            .banner-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .banner-title p {
-                font-size: 1rem;
-            }
-            
-            .contact-container, .bike-detail-container, .about-container {
-                flex-direction: column;
-            }
-            
-            .knowledge-cards, .brands-grid {
+            .bikes-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .bike-thumbnails {
-                justify-content: center;
-            }
-        }
-        
-        /* 添加遮罩層 */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 999;
-            pointer-events: none;
-        }
-        
-        .overlay.active {
-            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- 遮罩層 -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- 頁首 -->
+    <!-- Header -->
     <header>
         <div class="container">
-            <div class="header-top">
-                <div class="logo-area">
-                    <!-- 圓形頭像 - 請替換為您的實際圖片 -->
-                    <img src="https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/bigheadlogo.jpg?raw=true&" alt="單車逗點頭像" class="profile-img">
-                    <div class="logo-text">
-                        <h1>單車逗點 Q Cycling</h1>
-                        <p>一台車的重生，一段旅程的開始</p>
-                    </div>
+            <div class="header-content">
+                <div class="logo">
+                    <h1>單車逗點 - 單車展示</h1>
                 </div>
-                
-                <!-- 漢堡菜單按鈕 -->
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <nav id="nav">
-                    <ul>
-                        <li><a href="#home" class="nav-link active" data-page="home">首頁</a></li>
-                        <li><a href="#bikes" class="nav-link" data-page="bikes">單車展示</a></li>
-                        <li><a href="#about" class="nav-link" data-page="about">關於我們</a></li>
-                        <li><a href="#contact" class="nav-link" data-page="contact">與我們聯絡</a></li>
-                    </ul>
-                </nav>
-                <div class="language-switcher">
-                    <button class="lang-btn active" data-lang="zh">中文</button>
-                    <button class="lang-btn" data-lang="en">English</button>
-                    <button class="lang-btn" data-lang="ja">日本語</button>
-                </div>
+                <a href="index.html" class="back-link">返回首頁</a>
             </div>
         </div>
     </header>
 
-    <!-- 橫幅區域 -->
-   <section class="banner">
-        <div class="banner-title">
-            <p>請一起參與，讓每一台單車，都有重生的逗點</p>
-        </div>
-    </section> 
-
-    <!-- 主要內容 -->
+    <!-- Main Content -->
     <main class="container">
-        <!-- 首頁 -->
-        <div id="home" class="page active">
-            <!-- 單車知識區域 -->
-            <section class="knowledge-section">
-                <h2 class="section-title">單車知識庫</h2>
-                <div class="knowledge-cards">
-                    <div class="knowledge-card">
-                        <div class="knowledge-card-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/maintainance.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                        <div class="knowledge-card-content">
-                            <h3>單車保養指南</h3>
-                            <p>學習如何正確保養您的單車，延長使用壽命並確保騎行安全。包括清潔、潤滑、檢查磨損零件等基本保養知識。</p>
-                            <a class="read-more" data-page="maintenance-guide">閱讀更多</a>
-                        </div>
-                    </div>
-                    
-                    <div class="knowledge-card">
-                        <div class="knowledge-card-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/pickcar1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                        <div class="knowledge-card-content">
-                            <h3>如何選擇二手單車</h3>
-                            <p>購買二手單車時應該注意哪些細節？從車架檢查、零件磨損到試騎技巧，我們提供全面的選購指南。</p>
-                            <a class="read-more" data-page="buying-guide">閱讀更多</a>
-                        </div>
-                    </div>
-                    
-                    <div class="knowledge-card">
-                        <div class="knowledge-card-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/Tour%20de%20France2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                        <div class="knowledge-card-content">
-                            <h3>看懂環法自行車賽</h3>
-                            <p>環法賽是自行車界的頂級賽事。了解其歷史、規則、各色領騎衫的意義，以及如何欣賞這場精彩的賽事。</p>
-                            <a class="read-more" data-page="tour-de-france">閱讀更多</a>
-                        </div>
-                    </div>
-                    
-                    <div class="knowledge-card">
-                        <div class="knowledge-card-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/bikesyster.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                        <div class="knowledge-card-content">
-                            <h3>單車種類介紹</h3>
-                            <p>從公路車、登山車到城市通勤車，了解各類單車的特點、適用場景和優缺點，幫助您選擇最適合的車型。</p>
-                            <a class="read-more" data-page="bike-types">閱讀更多</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 精選單車區域 -->
-            <section class="featured-bikes">
-                <h2 class="section-title">精選單車</h2>
-                <div class="bikes-grid" id="featured-bikes-container">
-                    <!-- 精選單車將由JavaScript動態生成 -->
-                </div>
-            </section>
-            
-            <!-- 品牌介紹區域 -->
-            <section class="brands-section">
-                <h2 class="section-title">知名自行車品牌</h2>
-                <div class="brands-grid">
-                    <div class="brand-card">
-                        <div class="brand-logo">
-                            <!-- 這裡可以放品牌logo -->
-                        </div>
-                        <h3>Giant</h3>
-                        <p>全球最大的自行車製造商，總部位於台灣。以高品質的碳纖維車架和創新技術聞名。</p>
-                    </div>
-                    
-                    <div class="brand-card">
-                        <div class="brand-logo">
-                            <!-- 這裡可以放品牌logo -->
-                        </div>
-                        <h3>Merida</h3>
-                        <p>台灣知名自行車品牌，產品線涵蓋公路車、登山車等，以高性價比著稱。</p>
-                    </div>
-                    
-                    <div class="brand-card">
-                        <div class="brand-logo">
-                            <!-- 這裡可以放品牌logo -->
-                        </div>
-                        <h3>Specialized</h3>
-                        <p>美國頂級自行車品牌，專注於高性能公路車和登山車，深受專業選手喜愛。</p>
-                    </div>
-                    
-                    <div class="brand-card">
-                        <div class="brand-logo">
-                            <!-- 這裡可以放品牌logo -->
-                        </div>
-                        <h3>Trek</h3>
-                        <p>美國知名自行車品牌，產品線廣泛，從入門到專業級別都有涵蓋。</p>
-                    </div>
-                    
-                    <div class="brand-card">
-                        <div class="brand-logo">
-                            <!-- 這裡可以放品牌logo -->
-                        </div>
-                        <h3>Bianchi</h3>
-                        <p>義大利經典自行車品牌，以其標誌性的「比安奇綠」顏色聞名，歷史悠久。</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 單車知識詳細頁面 -->
-        <div id="maintenance-guide" class="page">
-            <section class="about-container">
-                <div class="about-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/maintainance2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                <div class="about-content">
-                    <h2>單車保養指南</h2>
-                    <p>定期保養您的單車不僅能延長其使用壽命，還能確保騎行安全。以下是一些基本的保養要點：</p>
-                    <p><strong>清潔：</strong>每次騎行後，用濕布擦拭車架和零件，去除灰塵和污垢。定期使用專用清潔劑徹底清洗。</p>
-                    <p><strong>潤滑：</strong>鏈條是單車上最重要的潤滑部位，應每100-200公里潤滑一次。使用專用鏈條油，避免過量。</p>
-                    <p><strong>檢查輪胎：</strong>定期檢查輪胎磨損情況和胎壓。適當的胎壓能提供更好的騎行體驗並減少爆胎風險。</p>
-                    <p><strong>煞車系統：</strong>檢查煞車塊磨損情況，確保煞車線順暢無阻。碟煞系統需檢查煞車油液位。</p>
-                    <p><strong>變速系統：</strong>確保變速順暢，必要時調整變速線張力。定期檢查飛輪和鏈條磨損情況。</p>
-                    <p>建議每6個月或每1000公里進行一次全面保養，或交由專業技師檢查。</p>
-                    <a href="#home" class="contact-btn back-to-home">返回首頁</a>
-                </div>
-            </section>
-        </div>
-        
-        <div id="buying-guide" class="page">
-            <section class="about-container">
-                <div class="about-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/pickcar2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                <div class="about-content">
-                    <h2>如何選擇二手單車</h2>
-                    <p>購買二手單車是一項經濟實惠的選擇，但需要仔細檢查以下幾個關鍵點：</p>
-                    <p><strong>車架檢查：</strong>仔細檢查車架是否有裂痕、凹痕或修補痕跡。鋁合金車架應注意焊接點，碳纖維車架需特別檢查是否有裂紋。</p>
-                    <p><strong>變速系統：</strong>測試所有檔位是否順暢換檔。檢查鏈條、飛輪和齒盤的磨損情況。過度磨損的零件可能需要更換。</p>
-                    <p><strong>煞車系統：</strong>測試前後煞車，確保制動力足夠且反應靈敏。檢查煞車塊磨損情況。</p>
-                    <p><strong>輪組：</strong>轉動輪子檢查是否偏擺，檢查輻條張力是否均勻。檢查輪框磨損情況，特別是煞車面。</p>
-                    <p><strong>試騎：</strong>一定要試騎，感受單車的操控性、舒適度和整體狀態。注意是否有異常聲音。</p>
-                    <p><strong>尺寸合適：</strong>確保單車尺寸適合您的身高和騎行姿勢，這對舒適度和騎行效率至關重要。</p>
-                    <p>在單車逗點，我們對所有寄賣單車進行專業檢查和整理，確保您買到的是狀況良好的單車。</p>
-                    <a href="#home" class="contact-btn back-to-home">返回首頁</a>
-                </div>
-            </section>
-        </div>
-        
-        <div id="tour-de-france" class="page">
-            <section class="about-container">
-                <div class="about-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/Tour%20de%20France1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                <div class="about-content">
-                    <h2>看懂環法自行車賽</h2>
-                    <p>環法自行車賽是世界上最負盛名的自行車賽事，每年夏季在法國舉行，偶爾也會途經周邊國家。以下是一些觀賽要點：</p>
-                    <p><strong>歷史：</strong>環法賽始於1903年，最初是為了促進報紙《汽車報》的銷量。如今已成為全球最受關注的自行車賽事。</p>
-                    <p><strong>賽制：</strong>比賽通常為期三週，共21個賽段，總里程約3500公里。包括平地賽段、丘陵賽段和山地賽段，以及個人計時賽。</p>
-                    <p><strong>領騎衫：</strong>
-                        <ul>
-                            <li><strong>黃衫：</strong>總成績領先者，是環法賽的最高榮譽。</li>
-                            <li><strong>綠衫：</strong>衝刺積分領先者，獎勵在平地賽段表現出色的選手。</li>
-                            <li><strong>圓點衫：</strong>登山王，獎勵在山地賽段表現出色的選手。</li>
-                            <li><strong>白衫：</strong>最佳年輕車手（25歲以下）總成績領先者。</li>
-                        </ul>
-                    </p>
-                    <p><strong>車隊戰術：</strong>自行車賽是團隊運動。車隊有主將、副將和 domestique（服務車手）等角色分工，團隊合作至關重要。</p>
-                    <p><strong>觀賽技巧：</strong>關注關鍵山地賽段和個人計時賽，這些往往是決定總成績的關鍵。同時留意突圍集團和衝刺終點的精彩對決。</p>
-                    <a href="#home" class="contact-btn back-to-home">返回首頁</a>
-                </div>
-            </section>
-        </div>
-        
-        <div id="bike-types" class="page">
-            <section class="about-container">
-                <div class="about-image" style="background-image: url('https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/bikesyster.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                <div class="about-content">
-                    <h2>單車種類介紹</h2>
-                    <p>不同類型的單車設計用於不同的騎行環境和目的。了解各種單車類型的特點可以幫助您選擇最適合的車型：</p>
-                    <p><strong>公路車：</strong>設計用於在鋪裝道路上高速行駛。特點是輕量化車架、彎把和窄胎。適合長距離騎行、競速和健身。</p>
-                    <p><strong>登山車：</strong>設計用於崎嶇地形和林道騎行。特點是寬胎、避震系統和直把。適合山地越野和技術性騎行。</p>
-                    <p><strong>城市車/通勤車：</strong>設計用於城市環境中的日常通勤。特點是舒適的騎行姿勢、實用配件（如擋泥板、貨架）和直把。</p>
-                    <p><strong>折疊車：</strong>設計便於攜帶和存放。特點是可折疊車架、小輪徑。適合多模式通勤（結合大眾運輸）和有限的存放空間。</p>
-                    <p><strong> gravel bike/探險車：</strong>公路車和登山車的混合體，能夠在多種路面上行駛。特點是較寬的輪胎、舒適的幾何和多個安裝點。</p>
-                    <p><strong>旅行車：</strong>專為長途旅行設計，特點是堅固的車架、舒適的幾何和多個貨架安裝點，便於攜帶行李。</p>
-                    <p>在單車逗點，我們提供各種類型的二手單車，幫助您找到最適合您需求的車款。</p>
-                    <a href="#home" class="contact-btn back-to-home">返回首頁</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 單車展示頁面 -->
-        <div id="bikes" class="page">
-            <!-- 篩選區域 -->
-            <section class="filters">
-                <div class="filter-group">
-                    <h3>單車類型</h3>
-                    <div class="filter-options">
-                        <button class="filter-btn active" data-type="all">全部</button>
-                        <button class="filter-btn" data-type="road">公路車</button>
-                        <button class="filter-btn" data-type="mountain">登山車</button>
-                        <button class="filter-btn" data-type="city">城市車</button>
-                        <button class="filter-btn" data-type="folding">折疊車</button>
-                    </div>
-                </div>
-                
-                <div class="filter-group">
-                    <h3>品牌</h3>
-                    <div class="filter-options">
-                        <button class="filter-btn active" data-brand="all">全部</button>
-                        <button class="filter-btn" data-brand="gia">Giant</button>
-                        <button class="filter-btn" data-brand="mer">Merida</button>
-                        <button class="filter-btn" data-brand="dah">Dahon</button>
-                        <button class="filter-btn" data-brand="spe">Specialized</button>
-                        <button class="filter-btn" data-brand="tre">Trek</button>
-                        <button class="filter-btn" data-brand="sco">Scott</button>
-                        <button class="filter-btn" data-brand="bia">Bianchi</button>
-                        <button class="filter-btn" data-brand="pin">Pinarello</button>
-                        <button class="filter-btn" data-brand="col">Colnago</button>
-                        <button class="filter-btn" data-brand="cer">Cervelo</button>
-                        <button class="filter-btn" data-brand="bmc">BMC</button>
-                        <button class="filter-btn" data-brand="fac">Factor</button>
-                        <button class="filter-btn" data-brand="twi">Twitter</button>
-                        <button class="filter-btn" data-brand="oth">其他</button>
-                    </div>
-                </div>
-                
-                <div class="filter-group">
-                    <h3>價格範圍</h3>
-                    <div class="filter-options">
-                        <button class="filter-btn active" data-price="all">全部</button>
-                        <button class="filter-btn" data-price="0-5000">5,000元以下</button>
-                        <button class="filter-btn" data-price="5000-10000">5,000-10,000元</button>
-                        <button class="filter-btn" data-price="10000-20000">10,000-20,000元</button>
-                        <button class="filter-btn" data-price="20000-50000">20,000-50,000元</button>
-                        <button class="filter-btn" data-price="50000+">50,000元以上</button>
-                    </div>
-                </div>
-                
-                <div class="search-box">
-                    <input type="text" placeholder="輸入關鍵字搜尋單車型號或品牌..." id="search-input-bikes">
-                    <button id="search-btn-bikes">搜尋</button>
-                </div>
-            </section>
-
-            <!-- 單車展示區域 -->
-            <section class="bikes-grid" id="bikes-container-bikes">
-                <!-- 單車卡片將由JavaScript動態生成 -->
-            </section>
-        </div>
-
-        <!-- 單車詳情頁面 -->
-        <div id="bike-detail" class="page">
-            <section class="bike-detail-container" id="bike-detail-content">
-                <!-- 單車詳情將由JavaScript動態生成 -->
-            </section>
-        </div>
-
-        <!-- 關於我們頁面 -->
-        <div id="about" class="page">
-            <section class="about-container">
-                <div class="about-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
-                <div class="about-content">
-                    <h2>關於單車逗點</h2>
-                    <p>單車逗點 Q Cycling 成立於2025年，是一家專注於二手單車寄賣的專業店鋪。我們相信每一台單車都有其獨特的故事與價值，即使它們的主人更換，這些單車依然能夠繼續在道路上奔馳，陪伴新的主人開啟一段全新的旅程。</p>
-                    <p>我們的使命是為每一台單車找到最適合的新主人，延續它們的生命與價值。我們提供專業的單車評估、整理與行銷服務，確保每台單車都能以最佳狀態交到新主人手中。</p>
-                    <p>無論您是想要出售您的愛車，還是尋找一台適合自己的二手單車，單車逗點都是您最佳的選擇。我們提供透明的交易流程、專業的技術支援，以及完善的售後服務。</p>
-                    <p>「一台車的重生，一段旅程的開始」是我們的核心理念。我們期待與您一起，見證每一台單車的新生，開啟每一段精彩的騎行旅程。</p>
-                </div>
-            </section>
-        </div>
-
-        <!-- 聯絡我們頁面 -->
-        <div id="contact" class="page">
-            <h2 style="margin-bottom: 20px; color: var(--primary-color);">與我們聯絡</h2>
-            <div class="contact-container">
-                <div class="contact-form">
-                    <h2>賣家寄賣評估</h2>
-                    <p style="margin-bottom: 20px;">感謝您考慮將愛車交給我們寄賣！我們會透過專業的整理與行銷，為您的單車找到最好的歸宿。</p>
-                    <p style="margin-bottom: 20px; font-weight: bold;">為了評估您的愛車，請提供以下資訊：</p>
-                    
-                    <a href="https://forms.gle/fEWBRMTKnSMRCMJy9" target="_blank">單車逗點 - 賣家寄賣評估表單</a></p>
-
-                    <p style="margin-bottom: 20px; font-weight: bold;">填寫完畢並提供照片後，我們將在 1-2個工作天內 由專人與您聯繫，安排後續的實體評估。我們的寄賣抽成詳情也會在評估時一併說明！</p>
-          
-                    <a href="https://forms.gle/fEWBRMTKnSMRCMJy9" target="_blank">
-                        <button class="submit-btn">提交評估申請</button>
-                    </a>        
-                </div>
-                
-                <div class="contact-form">
-                    <h2>買家購車需求</h2>
-                    <p style="margin-bottom: 20px;">感謝您選擇買車服務！請提供以下資訊，我們將為您匹配最合適的單車：</p>
-
-                    <p>或直接開啟表單：<a href="https://forms.gle/zaGtKZhtSq7A994PA" target="_blank">單車逗點 - 買家購車需求表單</a></p>      
-     
-                    <p style="margin-bottom: 20px;">我們收到後會盡快為您尋找合適的單車！</p>
-
-                    <a href="https://forms.gle/zaGtKZhtSq7A994PA" target="_blank">
-                        <button class="submit-btn">提交購車需求</button>
-                    </a>       
+        <!-- Filters -->
+        <section class="filters">
+            <div class="filter-group">
+                <h3>單車類型</h3>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-type="all">全部</button>
+                    <button class="filter-btn" data-type="公路車">公路車</button>
+                    <button class="filter-btn" data-type="登山車">登山車</button>
+                    <button class="filter-btn" data-type="城市車">城市車</button>
+                    <button class="filter-btn" data-type="折疊車">折疊車</button>
+                    <button class="filter-btn" data-type="gravel">Gravel</button>
                 </div>
             </div>
+            
+            <div class="filter-group">
+                <h3>價格範圍</h3>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-price="all">全部</button>
+                    <button class="filter-btn" data-price="0-5000">5,000元以下</button>
+                    <button class="filter-btn" data-price="5000-10000">5,000-10,000元</button>
+                    <button class="filter-btn" data-price="10000-20000">10,000-20,000元</button>
+                    <button class="filter-btn" data-price="20000-50000">20,000-50,000元</button>
+                    <button class="filter-btn" data-price="50000+">50,000元以上</button>
+                </div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" placeholder="輸入關鍵字搜尋單車型號或品牌..." id="search-input">
+                <button id="search-btn">搜尋</button>
+            </div>
+        </section>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">載入中...</div>
+
+        <!-- Bikes Grid -->
+        <section class="bikes-grid" id="bikes-container" style="display: none;">
+            <!-- 單車卡片將由 JavaScript 動態生成 -->
+        </section>
+
+        <!-- Error Message -->
+        <div class="error-message" id="error-message" style="display: none;">
+            <h2>無法載入單車資料</h2>
+            <p>請稍後再試或聯繫我們</p>
         </div>
     </main>
 
-    <!-- 頁腳 -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>關於單車逗點</h3>
-                    <p>我們專注於二手單車的寄賣服務，為每一台單車找到最適合的新主人，延續它們的生命與價值。</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>聯絡資訊</h3>
-                    <p>地址：35050台灣苗栗縣竹南鎮中美里5鄰西門16號</p>
-                    <p>電話：+886 0933-310747</p>
-                    <p>Email: q.cycling.comma@gmail.com</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>營業時間</h3>
-                    <p>週二至週五：11:00 - 21:00</p>
-                    <p>週六至週日：11:00 - 21:00</p>
-                    <p>公休日：星期一</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>關注我們</h3>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61582044851493">FB</a>
-                        <a href="#">IG</a>
-                        <a href="#">YT</a>
-                        <a href="https://lin.ee/QBkwVsG">LINE</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 單車逗點 Q Cycling 版權所有</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-// 請將此代碼替換到您原始HTML文件中 <script> 標籤內的內容
-// 保留所有原始單車資料和其他功能，僅修復查看詳情按鈕
+        // ⚠️ 重要：請替換成你的 Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        
+        let allBikes = [];
+        let filteredBikes = [];
 
-// 單車資料 - 保持原樣
-const bikeData = [
-    {
-        id: "GIA001",
-        name: "Giant TCR Advanced 2",
-        type: "road",
-        brand: "gia",
-        price: 28000,
-        year: 2020,
-        condition: "8成新",
-        status: "sold",
-        image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold8.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold8.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold7.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "輕量碳纖維車架，Shimano 105變速系統，性能優越的入門公路車。",
-        description: "輕量碳纖維車架，Shimano 105變速系統，性能優越的入門公路車。適合剛接觸公路車運動的騎行者，車況良好，變速順暢。",
-        specs: "車架：碳纖維 | 變速：Shimano 105 22速 | 重量：8.2kg"
-    },
-    {
-        id: "MER001",
-        name: "Merida Scultura 92",
-        type: "road",
-        brand: "mer",
-        price: 10500,
-        year: 2025,
-        condition: "9.5成新",
-        status: "available",
-        image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/Merida1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/Merida1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/maintainance.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/pickcar1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/Tour%20de%20France2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/main/bikesyster.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-        ],
-        summary: "鋁合金車架，舒適的騎乘幾何，適合長途騎行。",
-        description: "鋁合金車架，舒適的騎乘幾何，適合長途騎行。前後外胎是high road，錦合金螺絲，碳水壺架,全車精品,碳纖維座管。",
-        specs: "車架： M 碳纖維 | 適合身高：173～182| 變速：Shimano Claris 16速 | 重量：9.1kg"
-    },
-    {
-        id: "SPE001",
-        name: "Specialized Rockhopper",
-        type: "mountain",
-        brand: "spe",
-        price: 15000,
-        year: 2021,
-        condition: "9成新",
-        status: "reserved",
-        image: "https://assets.specialized.com/i/specialized/91825-31_ROCKHOPPER-EXPERT-GLOSS-SILVER-DUST---SATIN-BURNT-GOLD-METALLIC_HERO?$scom-pdp-gallery-image$&fmt=webp?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://assets.specialized.com/i/specialized/91825-31_ROCKHOPPER-EXPERT-GLOSS-SILVER-DUST---SATIN-BURNT-GOLD-METALLIC_HERO?$scom-pdp-gallery-image$&fmt=webp?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold7.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "入門級登山車，輕量鋁合金車架，適合林道騎乘。",
-        description: "入門級登山車，輕量鋁合金車架，適合林道騎乘。幾乎全新，僅騎行過幾次。",
-        specs: "車架：鋁合金 | 變速：Shimano Altus 18速 | 重量：12.5kg"
-    },
-    {
-        id: "TRE001",
-        name: "Trek Domane AL 2",
-        type: "road",
-        brand: "tre",
-        price: 25000,
-        year: 2020,
-        condition: "8.5成新",
-        status: "sold",
-        image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold8.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold4.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "舒適型公路車，配備減震技術，適合不平坦路面。",
-        description: "舒適型公路車，配備減震技術，適合不平坦路面。車況極佳，保養良好。",
-        specs: "車架：鋁合金 | 變速：Shimano Claris 16速 | 重量：9.6kg"
-    },
-    {
-        id: "TWI001",
-        name: "Twitter 龍卷風",
-        type: "road",
-        brand: "twi",
-        price: 41000,
-        year: 2025,
-        condition: "9.5成新",
-        status: "available",
-        image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/cyclon.jpg?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/cyclon.jpg?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold7.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "全部碳纖維的車架及輪組，加上全套電子變速可支持到14段飛輪。",
-        description: "全部碳纖維的車架及輪組，加上全套電子變速可支持到14段飛輪,一體試車把，全車隱藏線，油壓碟煞，3D打印透氣舒適支撐座椅 CP值爆表。",
-        specs: "車架： 碳纖維 | 適合身高：175～180| 變速：12x2,24速 | 重量：9kg"
-    },
-    {
-        id: "GIA002",
-        name: "Giant Escape 2",
-        type: "city",
-        brand: "gia",
-        price: 12000,
-        year: 2022,
-        condition: "9.5成新",
-        status: "sold",
-        image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold7.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold8.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "平把公路車，適合城市通勤與休閒騎行。",
-        description: "平把公路車，適合城市通勤與休閒騎行。幾乎全新，僅試騎過一次。",
-        specs: "車架：鋁合金 | 變速：Shimano Altus 16速 | 重量：11.3kg"
-    },
-    {
-        id: "SCO001",
-        name: "Scott Speedster 20",
-        type: "road",
-        brand: "sco",
-        price: 35000,
-        year: 2021,
-        condition: "9成新",
-        status: "sold",
-        image: "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold4.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold4.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold7.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "輕量鋁合金車架，Shimano 105變速系統，性能優越的公路車。",
-        description: "輕量鋁合金車架，Shimano 105變速系統，性能優越的公路車。車況極佳，保養完善。",
-        specs: "車架：鋁合金 | 變速：Shimano 105 22速 | 重量：8.5kg"
-    },
-    {
-        id: "BIA001",
-        name: "Bianchi Via Nirone 7",
-        type: "road",
-        brand: "bia",
-        price: 45000,
-        year: 2020,
-        condition: "8成新",
-        status: "reserved",
-        image: "https://d1mgeijqpfaspl.cloudfront.net/uploads/bike/media/1742240/a156445f-f26d-4787-979f-87ef85e5b367.webp?width=770?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        images: [
-            "https://d1mgeijqpfaspl.cloudfront.net/uploads/bike/media/1742240/a156445f-f26d-4787-979f-87ef85e5b367.webp?width=770?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold7.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold6.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold2.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://github.com/qcyclingcomma/qcyclingcomma.github.io/blob/5fae8a727ce7d869526d7c27481349e6d6ca60cb/sold1.png?raw=true&ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        ],
-        summary: "經典義大利品牌，鋁合金車架，Shimano 105變速系統。",
-        description: "經典義大利品牌，鋁合金車架，Shimano 105變速系統。車況良好，有正常使用痕跡。",
-        specs: "車架：鋁合金 | 變速：Shimano 105 22速 | 重量：8.8kg"
-    }
-];
-
-// 初始化頁面
-document.addEventListener('DOMContentLoaded', function() {
-    // 顯示首頁精選單車
-    displayFeaturedBikes();
-    
-    // 設定單車展示頁面
-    displayBikes(bikeData, 'bikes-container-bikes');
-    
-    // 設定篩選按鈕事件
-    setupFilters('bikes');
-    
-    // 設定搜尋功能
-    setupSearch('bikes');
-    
-    // 設定語言切換
-    setupLanguageSwitcher();
-    
-    // 設定頁面切換
-    setupPageNavigation();
-    
-    // 設定漢堡選單
-    setupHamburgerMenu();
-    
-    // 設定知識卡片點擊事件
-    setupKnowledgeCards();
-    
-    // 初始化頁面顯示，基於URL的hash
-    handleHashChange();
-});
-
-// 修改頁面導航設置
-function setupPageNavigation() {
-    // 監聽hashchange事件
-    window.addEventListener('hashchange', handleHashChange);
-    
-    // 修改導航鏈接的點擊事件
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const pageId = this.getAttribute('data-page');
-            
-            // 更新URL hash
-            window.location.hash = pageId;
-            
-            // 在移動設備上關閉漢堡選單
-            if (window.innerWidth <= 768) {
-                closeHamburgerMenu();
-            }
-        });
-    });
-    
-    // 設定返回首頁按鈕
-    document.querySelectorAll('.back-to-home').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.hash = 'home';
-        });
-    });
-}
-
-// 處理hash變化 - 關鍵修復
-function handleHashChange() {
-    const hash = window.location.hash.substring(1);
-    
-    // 檢查是否是單車詳情頁面 - 修復這裡
-    if (hash.startsWith('bike-detail')) {
-        const bikeId = hash.split('?bike=')[1];
-        if (bikeId) {
-            showBikeDetail(bikeId);
-            return;
-        }
-    }
-    
-    const validPages = ['home', 'bikes', 'about', 'contact', 'maintenance-guide', 'buying-guide', 'tour-de-france', 'bike-types'];
-    
-    // 如果hash為空或無效，默認顯示首頁
-    const pageId = hash && validPages.includes(hash) ? hash : 'home';
-    
-    // 更新導航激活狀態
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(nav => nav.classList.remove('active'));
-    const activeNav = document.querySelector(`.nav-link[data-page="${pageId}"]`);
-    if (activeNav) activeNav.classList.add('active');
-    
-    // 顯示對應頁面
-    showPage(pageId);
-}
-
-// 顯示頁面
-function showPage(pageId) {
-    // 隱藏所有頁面
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    // 顯示目標頁面
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-    }
-    
-    // 如果是單車展示頁面，初始化篩選和搜尋
-    if (pageId === 'bikes') {
-        displayBikes(bikeData, 'bikes-container-bikes');
-        setupFilters('bikes');
-        setupSearch('bikes');
-    }
-}
-
-// 顯示單車詳情 - 保持原樣
-function showBikeDetail(bikeId) {
-    const bike = bikeData.find(b => b.id === bikeId);
-    if (!bike) {
-        console.error('找不到單車:', bikeId);
-        return;
-    }
-    
-    const statusText = bike.status === 'available' ? '可購買' : 
-                     bike.status === 'reserved' ? '已預訂' : '已售出';
-    const statusClass = bike.status === 'available' ? 'status-available' : 
-                      bike.status === 'reserved' ? 'status-reserved' : 'status-sold';
-    
-    // 生成縮略圖
-    let thumbnailsHtml = '';
-    bike.images.forEach((img, index) => {
-        thumbnailsHtml += `<div class="bike-thumbnail ${index === 0 ? 'active' : ''}" 
-            style="background-image: url('${img}')" 
-            data-image="${img}"></div>`;
-    });
-    
-    const detailContainer = document.getElementById('bike-detail-content');
-    detailContainer.innerHTML = `
-        <div class="bike-detail-gallery">
-            <div class="bike-main-image" style="background-image: url('${bike.images[0]}')">
-                <div class="bike-status ${statusClass}">${statusText}</div>
-            </div>
-            <div class="bike-thumbnails">
-                ${thumbnailsHtml}
-            </div>
-        </div>
-        <div class="bike-detail-info">
-            <h2>${bike.name}</h2>
-            <div class="bike-code">編號：${bike.id}</div>
-            <div class="bike-price">NT$ ${bike.price.toLocaleString()}</div>
-            
-            <div class="bike-specs">
-                <p><strong>年份：</strong>${bike.year}</p>
-                <p><strong>車況：</strong>${bike.condition}</p>
-                <p><strong>規格：</strong>${bike.specs}</p>
-            </div>
-            
-            <div class="bike-description">
-                <p>${bike.description}</p>
-            </div>
-            
-            ${bike.status === 'available' ? 
-                '<a href="#contact" class="contact-btn">聯絡購買</a>' : 
-                bike.status === 'reserved' ? 
-                '<p style="color: #ff9800; font-weight: bold;">此車已被預訂</p>' : 
-                '<p style="color: #f44336; font-weight: bold;">此車已售出</p>'}
-        </div>
-    `;
-    
-    // 顯示單車詳情頁面
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    document.getElementById('bike-detail').classList.add('active');
-    
-    // 添加縮略圖點擊事件
-    setTimeout(() => {
-        document.querySelectorAll('.bike-thumbnail').forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                const mainImage = document.querySelector('.bike-main-image');
-                mainImage.style.backgroundImage = `url('${this.dataset.image}')`;
+        // 載入單車資料
+        async function loadBikes() {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL);
+                const data = await response.json();
                 
-                // 更新激活狀態
-                document.querySelectorAll('.bike-thumbnail').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    }, 100);
-}
-
-// 顯示精選單車
-function displayFeaturedBikes() {
-    const featuredBikes = bikeData.filter(bike => bike.status === 'available').slice(0, 4);
-    displayBikes(featuredBikes, 'featured-bikes-container');
-}
-
-// 顯示單車卡片 - 關鍵修復在這裡
-function displayBikes(bikes, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    if (bikes.length === 0) {
-        container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 40px;">沒有找到符合條件的單車</p>';
-        return;
-    }
-    
-    bikes.forEach(bike => {
-        const statusText = bike.status === 'available' ? '可購買' : 
-                         bike.status === 'reserved' ? '已預訂' : '已售出';
-        const statusClass = bike.status === 'available' ? 'status-available' : 
-                          bike.status === 'reserved' ? 'status-reserved' : 'status-sold';
-        
-        const bikeCard = document.createElement('div');
-        bikeCard.className = 'bike-card';
-        bikeCard.innerHTML = `
-            <div class="bike-status ${statusClass}">${statusText}</div>
-            <div class="bike-image" style="background-image: url('${bike.image}')"></div>
-            <div class="bike-info">
-                <div class="bike-code">${bike.id}</div>
-                <h3 class="bike-name">${bike.name}</h3>
-                <div class="bike-summary">${bike.summary}</div>
-                <div class="bike-details">
-                    <span>${bike.year}年</span>
-                    <span>${bike.condition}</span>
-                </div>
-                <div class="bike-price">NT$ ${bike.price.toLocaleString()}</div>
-                <a class="view-details" data-bike-id="${bike.id}">查看詳情</a>
-            </div>
-        `;
-        container.appendChild(bikeCard);
-    });
-    
-    // 重新綁定查看詳情按鈕事件 - 關鍵修復！
-    setTimeout(() => {
-        document.querySelectorAll('.view-details').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const bikeId = this.getAttribute('data-bike-id');
-                // 使用hash來觸發單車詳情顯示
-                window.location.hash = `bike-detail?bike=${bikeId}`;
-            });
-        });
-    }, 100);
-}
-
-// 設定篩選功能
-function setupFilters(page) {
-    const filterBtns = document.querySelectorAll(`#${page} .filter-btn`);
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const parent = this.parentElement;
-            const siblings = parent.querySelectorAll('.filter-btn');
-            siblings.forEach(sibling => sibling.classList.remove('active'));
-            this.classList.add('active');
-            
-            applyFilters(page);
-        });
-    });
-}
-
-// 應用篩選條件
-function applyFilters(page) {
-    const containerId = page === 'home' ? 'featured-bikes-container' : 'bikes-container-bikes';
-    const typeFilter = document.querySelector(`#${page} .filter-options [data-type].active`)?.dataset.type || 'all';
-    const brandFilter = document.querySelector(`#${page} .filter-options [data-brand].active`)?.dataset.brand || 'all';
-    const priceFilter = document.querySelector(`#${page} .filter-options [data-price].active`)?.dataset.price || 'all';
-    
-    let filteredBikes = bikeData.filter(bike => {
-        if (typeFilter !== 'all' && bike.type !== typeFilter) return false;
-        if (brandFilter !== 'all' && bike.brand !== brandFilter) return false;
-        
-        if (priceFilter !== 'all') {
-            if (priceFilter === '0-5000' && bike.price > 5000) return false;
-            if (priceFilter === '5000-10000' && (bike.price < 5000 || bike.price > 10000)) return false;
-            if (priceFilter === '10000-20000' && (bike.price < 10000 || bike.price > 20000)) return false;
-            if (priceFilter === '20000-50000' && (bike.price < 20000 || bike.price > 50000)) return false;
-            if (priceFilter === '50000+' && bike.price < 50000) return false;
+                if (data.success) {
+                    allBikes = data.bikes;
+                    filteredBikes = allBikes;
+                    displayBikes(filteredBikes);
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('bikes-container').style.display = 'grid';
+                } else {
+                    throw new Error('資料載入失敗');
+                }
+            } catch (error) {
+                console.error('Error loading bikes:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error-message').style.display = 'block';
+            }
         }
-        
-        return true;
-    });
-    
-    displayBikes(filteredBikes, containerId);
-}
 
-// 設定搜尋功能
-function setupSearch(page) {
-    const searchInput = document.getElementById(page === 'home' ? 'search-input' : 'search-input-bikes');
-    const searchBtn = document.getElementById(page === 'home' ? 'search-btn' : 'search-btn-bikes');
-    const containerId = page === 'home' ? 'featured-bikes-container' : 'bikes-container-bikes';
-    
-    if (searchBtn && searchInput) {
-        searchBtn.addEventListener('click', () => performSearch(page, containerId));
-        searchInput.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                performSearch(page, containerId);
+        // 顯示單車卡片
+        function displayBikes(bikes) {
+            const container = document.getElementById('bikes-container');
+            container.innerHTML = '';
+            
+            if (bikes.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 40px;">沒有找到符合條件的單車</p>';
+                return;
             }
-        });
-    }
-    
-    function performSearch(page, containerId) {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        
-        if (searchTerm === '') {
-            applyFilters(page);
-            return;
+            
+            bikes.forEach(bike => {
+                const statusText = bike.status === 'available' ? '可購買' : 
+                                 bike.status === 'reserved' ? '已預訂' : '已售出';
+                const statusClass = bike.status === 'available' ? 'status-available' : 
+                                  bike.status === 'reserved' ? 'status-reserved' : 'status-sold';
+                
+                const bikeCard = document.createElement('div');
+                bikeCard.className = 'bike-card';
+                bikeCard.innerHTML = `
+                    <div class="bike-status ${statusClass}">${statusText}</div>
+                    <div class="bike-image" style="background-image: url('${bike.image || 'https://via.placeholder.com/400x300?text=No+Image'}')"></div>
+                    <div class="bike-info">
+                        <div class="bike-code">${bike.id}</div>
+                        <h3 class="bike-name">${bike.name}</h3>
+                        <div class="bike-summary">${bike.summary || ''}</div>
+                        <div class="bike-details">
+                            <span>${bike.year}年</span>
+                            <span>${bike.condition}</span>
+                        </div>
+                        <div class="bike-price">NT$ ${parseInt(bike.price).toLocaleString()}</div>
+                        <a href="bike-detail.html?id=${bike.id}" class="view-details">查看詳情</a>
+                    </div>
+                `;
+                container.appendChild(bikeCard);
+            });
         }
-        
-        let filteredBikes = bikeData.filter(bike => {
-            return bike.name.toLowerCase().includes(searchTerm) || 
-                   bike.id.toLowerCase().includes(searchTerm) ||
-                   bike.description.toLowerCase().includes(searchTerm) ||
-                   Object.keys(brandMapping).some(key => 
-                       brandMapping[key].toLowerCase().includes(searchTerm) && bike.brand === key
-                   );
-        });
-        
-        displayBikes(filteredBikes, containerId);
-    }
-}
 
-// 品牌映射
-const brandMapping = {
-    'gia': 'Giant',
-    'mer': 'Merida',
-    'dah': 'Dahon',
-    'spe': 'Specialized',
-    'tre': 'Trek',
-    'sco': 'Scott',
-    'bia': 'Bianchi',
-    'pin': 'Pinarello',
-    'col': 'Colnago',
-    'cer': 'Cervelo',
-    'bmc': 'BMC',
-    'fac': 'Factor',
-    'twi': 'Twitter',
-    'oth': '其他'
-};
+        // 設定篩選功能
+        function setupFilters() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    const siblings = parent.querySelectorAll('.filter-btn');
+                    siblings.forEach(sibling => sibling.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    applyFilters();
+                });
+            });
+        }
 
-// 設定語言切換
-function setupLanguageSwitcher() {
-    const langBtns = document.querySelectorAll('.lang-btn');
-    
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            langBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+        // 應用篩選條件
+        function applyFilters() {
+            const typeFilter = document.querySelector('[data-type].active')?.dataset.type || 'all';
+            const priceFilter = document.querySelector('[data-price].active')?.dataset.price || 'all';
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
             
-            // 這裡可以添加實際的語言切換邏輯
-            // 目前只是示範，實際應用中可能需要載入不同的語言文件
-            const lang = this.dataset.lang;
-            alert(`已切換到${this.textContent}介面 (功能示範)`);
-        });
-    });
-}
-
-// 設定漢堡選單
-function setupHamburgerMenu() {
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
-    const overlay = document.getElementById('overlay');
-    
-    if (hamburger && nav && overlay) {
-        hamburger.addEventListener('click', function() {
-            nav.classList.toggle('active');
-            overlay.classList.toggle('active');
+            filteredBikes = allBikes.filter(bike => {
+                // 類型篩選
+                if (typeFilter !== 'all' && bike.type !== typeFilter) return false;
+                
+                // 價格篩選
+                const price = parseInt(bike.price);
+                if (priceFilter !== 'all') {
+                    if (priceFilter === '0-5000' && price > 5000) return false;
+                    if (priceFilter === '5000-10000' && (price < 5000 || price > 10000)) return false;
+                    if (priceFilter === '10000-20000' && (price < 10000 || price > 20000)) return false;
+                    if (priceFilter === '20000-50000' && (price < 20000 || price > 50000)) return false;
+                    if (priceFilter === '50000+' && price < 50000) return false;
+                }
+                
+                // 搜尋篩選
+                if (searchTerm !== '') {
+                    const searchableText = `${bike.name} ${bike.brand} ${bike.id} ${bike.summary}`.toLowerCase();
+                    if (!searchableText.includes(searchTerm)) return false;
+                }
+                
+                return true;
+            });
             
-            // 防止背景滾動
-            if (nav.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== hamburger && !hamburger.contains(e.target)) {
-                closeHamburgerMenu();
-            }
-        });
-    }
-}
+            displayBikes(filteredBikes);
+        }
 
-// 關閉漢堡選單
-function closeHamburgerMenu() {
-    const nav = document.getElementById('nav');
-    const overlay = document.getElementById('overlay');
-    
-    if (nav && overlay) {
-        nav.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
+        // 設定搜尋功能
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            
+            searchBtn.addEventListener('click', applyFilters);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    applyFilters();
+                }
+            });
+        }
 
-// 設定知識卡片點擊事件
-function setupKnowledgeCards() {
-    document.querySelectorAll('.read-more').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const pageId = this.getAttribute('data-page');
-            window.location.hash = pageId;
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBikes();
+            setupFilters();
+            setupSearch();
         });
-    });
-}    
     </script>
-
-<!-- ✅ Q Cycling Autofeed: Google Sheets → API → Site (no-scrape) -->
-<script>
-(()=>{
-  const API_URL = "https://script.google.com/macros/s/AKfycbw2caULi9A0qBZ7iKhGaRrwOm8GGQHlJlCgswQMZQJmgXCkjGYAqQL8230J8iw550wmTg/exec";
-
-  function toDirectImage(url){
-    if(!url) return "";
-    const s = String(url);
-    const m1 = s.match(/https?:\/\/drive\.google\.com\/file\/d\/([^/]+)/i);
-    if(m1 && m1[1]) return `https://drive.google.com/uc?export=view&id=${m1[1]}`;
-    const m2 = s.match(/[?&]id=([^&]+)/i);
-    if(s.includes("drive.google.com") && m2 && m2[1]) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
-    return s;
-  }
-
-  function imagesFrom(bike){
-    return [bike.img1, bike.img2, bike.img3, bike.img4, bike.img5]
-      .map(toDirectImage)
-      .filter(u => !!u && String(u).trim() !== "");
-  }
-
-  function formatPrice(n){
-    const num = Number(n || 0);
-    return "NT$ " + num.toLocaleString("zh-TW");
-  }
-
-  function bikeCardHTML(bike, idx, idPrefix){
-    const imgs = imagesFrom(bike);
-    const hero = imgs[0] || "";
-    const id = (idPrefix || "b") + "-" + (bike.id || idx);
-    const brand = bike.brand || "";
-    const model = bike.model || "";
-    const size  = bike.size  || "";
-    const price = formatPrice(bike.price);
-    const desc  = bike.desc  || "";
-
-    const thumbs = imgs.length > 1 ? `<div class="thumbs">${
-      imgs.map((u, i) => `
-        <button class="thumb" data-target="${id}" data-src="${u}" aria-label="thumb ${i+1}">
-          <img src="${u}" alt="thumb ${i+1}" loading="lazy">
-        </button>
-      `).join("")
-    }</div>` : "";
-
-    return `
-      <article class="bike-card">
-        <div class="media">
-          <div class="hero">
-            <img id="${id}-hero" src="${hero}" alt="${brand} ${model}" loading="lazy">
-          </div>
-          ${thumbs}
-        </div>
-        <div class="info">
-          <h3>${brand} ${model}</h3>
-          <p class="meta">尺寸：${size || "—"}</p>
-          <p class="price">${price}</p>
-          <p class="desc">${desc}</p>
-        </div>
-      </article>
-    `;
-  }
-
-  function bindThumbSwitching(scope){
-    (scope || document).querySelectorAll(".thumb").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.getAttribute("data-target");
-        const src = btn.getAttribute("data-src");
-        const hero = document.getElementById(`${target}-hero`);
-        if(hero && src) hero.src = src;
-      });
-    });
-  }
-
-  async function loadFromAPI(){
-    try {
-      const res = await fetch(API_URL, { cache: "no-store" });
-      const data = await res.json();
-      const items = Array.isArray(data) ? data : [];
-
-      // Featured (首頁) 容器
-      const featured = items.slice().sort((a,b)=>Number(b.price||0)-Number(a.price||0)).slice(0,4);
-      const featuredEl = document.getElementById("featured-bikes-container");
-      if (featuredEl) {
-        featuredEl.innerHTML = featured.map((b,i)=>bikeCardHTML(b,i,"f")).join("");
-        bindThumbSwitching(featuredEl);
-      }
-
-      // 列表頁容器
-      const listEl = document.getElementById("bikes-container-bikes");
-      if (listEl) {
-        const sorted = items.slice().sort((a,b)=>Number(b.price||0)-Number(a.price||0));
-        listEl.innerHTML = sorted.map((b,i)=>bikeCardHTML(b,i,"l")).join("");
-        bindThumbSwitching(listEl);
-      }
-    } catch (err) {
-      console.error("Load API failed:", err);
-      const listEl = document.getElementById("bikes-container-bikes");
-      if (listEl) listEl.innerHTML = `<p>載入失敗，請稍候再試。</p>`;
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", loadFromAPI);
-})();
-</script>
-<!-- ✅ /Q Cycling Autofeed -->
-
 </body>
 </html>
